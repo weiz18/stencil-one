@@ -1,6 +1,6 @@
 import { Component, Prop, h, JSX, Event, EventEmitter } from '@stencil/core';
 import { format } from '../../utils/utils';
-
+import { Gsap } from '../../utils/gsap';
 @Component({
   tag: 'my-component',
   styleUrl: 'my-component.css',
@@ -26,11 +26,13 @@ export class MyComponent {
   private getText(): string {
     return format(this.first, this.middle, this.last);
   }
-   onClicked(value: string) {
-     console.log('Value Clicked is ', value);
-   }
+  onClicked(value: string) {
+    console.log('Value Clicked is ', value);
+  }
+  gsap: Gsap;
 
   render() : JSX.Element {
+    this.gsap = new Gsap();
     return (
       <div class="nice">
       <span>

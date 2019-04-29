@@ -1,10 +1,16 @@
 const path = require('path');
 
-// const rootDir = '@stencil/core';
+const rootDir = '@stencil/core';
 // const distDir = path.join(rootDir, 'dist');
-// const testingDir = path.join(rootDir, 'testing');
+const testingDir = path.join(rootDir, 'testing');
 const config = {
   preset: '@stencil/core/testing',
+  transform: {
+    '^.+\\.(ts|tsx)$': path.join(testingDir, 'jest-preprocessor.js'),
+    '^.+\\.js$': 'babel-jest'
+  },
+
+  transformIgnorePatterns: ['/node_modules/(?!gsap).+\\.js$'],
 //   testRegex: 'design-system/stencil/src/.*\\.spec\\.(ts|tsx)$',
 //   transformIgnorePatterns: ['<rootDir>/node_modules/'],
 //   moduleFileExtensions: [

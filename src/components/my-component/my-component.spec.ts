@@ -3,7 +3,7 @@ import {newSpecPage} from '@stencil/core/testing';
 import {MyComponent} from './my-component';
 
 it('Should render', async() => {
-  const {root, styles} = await newSpecPage({
+  const { root } = await newSpecPage({
     components: [MyComponent],
     html: `<my-component first="Hello" last="World"></my-component>`
   });
