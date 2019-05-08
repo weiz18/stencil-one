@@ -17,6 +17,7 @@
     "jsxFactory": "h"
   },
   "include": [
+    "test",
     "src",
     "types/jsx.d.ts"
   ],

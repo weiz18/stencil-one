@@ -2,6 +2,9 @@ import {newSpecPage} from '@stencil/core/testing';
 
 import {MyComponent} from './my-component';
 
+import { serializer } from '../../../test/stencil-serializer';
+
+expect.addSnapshotSerializer(serializer);
 it('Should render', async() => {
   const {root, styles} = await newSpecPage({
     components: [MyComponent],
@@ -26,7 +29,7 @@ it('Should render', async() => {
   expect(root).toMatchSnapshot();
   let text = root.shadowRoot.querySelector('span');
   expect(text.textContent).toBe(`Hello, World! I'm Hello World`);
-  expect(root.first).toEqual('Hello')
+  expect(root.first).toEqual('Hello');
 });
 
 it('Should emit', async() => {
