@@ -6,30 +6,31 @@ import { serializer } from '../../../test/stencil-serializer';
 
 expect.addSnapshotSerializer(serializer);
 it('Should render', async() => {
-  const {root, styles} = await newSpecPage({
+  const page = await newSpecPage({
     components: [MyComponent],
-    html: `<my-component first="Hello" last="World"></my-component>`
+    html: `<my-component first="Hello" last="World"></my-component>`,
+    serializedShadowDom: true
   });
 
-  expect(root).toEqualHtml(`
-    <my-component class=\"hydrated\" first=\"Hello\" last=\"World\">
-    <shadow-root>
-      <div class=\"nice\">
-        <span>
-          Hello, World! I'm Hello World
-        </span>
-        <button>
-          Click Me!
-        </button>
-      </div>
-    </shadow-root>
-  </my-component>
-  `);
+  // expect(root).toEqualHtml(`
+  //   <my-component class=\"hydrated\" first=\"Hello\" last=\"World\">
+  //   <shadow-root>
+  //     <div class=\"nice\">
+  //       <span>
+  //         Hello, World! I'm Hello World
+  //       </span>
+  //       <button>
+  //         Click Me!
+  //       </button>
+  //     </div>
+  //   </shadow-root>
+  // </my-component>
+  // `);
 
-  expect(root).toMatchSnapshot();
-  let text = root.shadowRoot.querySelector('span');
+  expect(page.doc).toMatchSnapshot();
+  let text = page.root.shadowRoot.querySelector('span');
   expect(text.textContent).toBe(`Hello, World! I'm Hello World`);
-  expect(root.first).toEqual('Hello');
+  expect(page.root.first).toEqual('Hello');
 });
 
 it('Should emit', async() => {

@@ -3,8 +3,9 @@ import {MockNode, serializeNodeToHtml } from '@stencil/core/dist/mock-doc';
 const print =  (val: HTMLElement, print, indent, opts, colors): string => {
     console.log('HTMLElement', val instanceof HTMLElement)
     console.log('MockNode', val instanceof MockNode)
-    console.log('SER',serializeNodeToHtml(val));
-    return serializeNodeToHtml(val);
+    console.log('NODE', val)
+    let res = serializeNodeToHtml(val, {serializeShadowRoot: true});
+    return res;
 }
 
 const test = (val: HTMLElement): boolean => {
