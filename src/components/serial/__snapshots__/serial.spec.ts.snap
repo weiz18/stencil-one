@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`serial should render 1`] = `
+<my-serial value="I am updated value">
+  <mock:shadow-root>
+    <div class="cool">
+      <h1>
+        I am a header
+      </h1>
+      <p>
+        I am paragraph
+      </p>
+      <p>
+        I am updated value
+      </p>
+    </div>
+  </mock:shadow-root>
+</my-serial>
+`;
