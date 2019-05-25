@@ -17,3 +17,4 @@ export const serializer = {
     print,
     test
 }
+expect.addSnapshotSerializer(serializer)
