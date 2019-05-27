@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 
 import { MyHostComponent } from './host';
 
-describe('complex prop', () => {
+describe('host', () => {
 
     it('should render', async () => {
         const page = await newSpecPage({

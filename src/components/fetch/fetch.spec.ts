@@ -19,7 +19,8 @@ describe('fetch', () => {
                     This is the app
                 </p>
             </my-fetch>
-        `)
+        `);
+        //expect(page.root).toMatchSnapshot();
     });
 
     it('should render with language', async () => {
