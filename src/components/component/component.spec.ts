@@ -1,32 +1,26 @@
 import {newSpecPage} from '@stencil/core/testing';
 
 import {MyComponent} from './component';
-import * as utils from '../../utils/utils';
 
 describe('component', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   })
-  describe('render', () => {
-    it('should return text', () => {
-      let cmp = new MyComponent();
-      expect(cmp.getOne()).toEqual('This is a string');
-    });
 
-    it('should format mock value', async() => {
-      // this is here to show mocking example.
-      jest
-        .spyOn(utils, 'format')
-        .mockReturnValue('Tally Barak');
-      const {root} = await newSpecPage({components: [MyComponent], html: `<my-component first="Hello" last="World">Some Text</my-component>`, supportsShadowDom: true});
-      let span = root
-        .shadowRoot
-        .querySelector('span');
-      expect(span.textContent).toEqual('Hello, World! I\'m Tally Barak');
-    });
+  describe('instance', () => {
+    it ('Should format the name', () => {
+      let cmp = new MyComponent();
+      cmp.first = 'Donald';
+      cmp.last = 'Duck';
+      expect(cmp.format()).toEqual('Donald Duck');
+    });      
+  });
+  
+  describe('render', () => {
 
     it('Should render with serializing shadow dom', async() => {
-      const {root} = await newSpecPage({components: [MyComponent], html: `<my-component first="Hello" last="World">Some Text</my-component>`, supportsShadowDom: true});
+      const {root} = await newSpecPage({
+        components: [MyComponent], html: `<my-component first="Hello" last="World">Some Text</my-component>`, supportsShadowDom: true});
 
       expect(root).toEqualHtml(`
         <my-component first=\"Hello\" last=\"World\">
