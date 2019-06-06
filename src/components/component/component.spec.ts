@@ -17,46 +17,44 @@ describe('component', () => {
   });
   
   describe('render', () => {
-
+    
     it('Should render with serializing shadow dom', async() => {
       const {root} = await newSpecPage({
-        components: [MyComponent], html: `<my-component first="Hello" last="World">Some Text</my-component>`, supportsShadowDom: true});
+        components: [MyComponent],
+        html: `<my-component first="Donald" last="Duck">Some Text</my-component>`
+      });
 
       expect(root).toEqualHtml(`
-        <my-component first=\"Hello\" last=\"World\">
+        <my-component first="Donald" last="Duck">
           <mock:shadow-root>
-            <div class=\"nice\">
+            <div class="nice">
               <span>
-                Hello, World! I'm Hello World
+                Hello, World! I'm Donald Duck
               </span>
               <button>
                 Click Me!
               </button>
+              <input>
+              <slot></slot>
             </div>
           </mock:shadow-root>
           Some Text
         </my-component>
       `);
+      expect(root).toMatchSnapshot();
       expect(root.shadowRoot).toBeTruthy();
       expect(root.shadowRoot.querySelector('button')).toBeTruthy();
       expect(root.querySelector('button')).toBeFalsy();
     });
 
-    it('Should render without serializing shadow dom', async() => {
-      const {root} = await newSpecPage({components: [MyComponent], html: `<my-component first="Hello" last="World">Some Text</my-component>`, supportsShadowDom: false});
 
-      expect(root).toEqualHtml(`
-       <my-component first="Hello" last="World">
-        Some Text      
-        <div class="nice">
-          <span>
-            Hello, World! I'm Hello World
-          </span>
-          <button>
-            Click Me!
-          </button>
-        </div>
-      `);
+    it('Should render without serializing shadow dom', async() => {
+      const {root} = await newSpecPage({
+        components: [MyComponent],
+        html: `<my-component first="Donald" last="Duck">Some Text</my-component>`,
+        supportsShadowDom: false
+      });
+
       expect(root).toMatchSnapshot();
       expect(root.shadowRoot).toBeFalsy();
       expect(root.querySelector('button')).toBeTruthy();
@@ -64,32 +62,14 @@ describe('component', () => {
     });
 
     it('Should render setting content later', async() => {
-      const html = `<my-component first="Hello" last="World">Some Text</my-component>`;
-      const page = await newSpecPage({components: [MyComponent], supportsShadowDom: true});
+      const html = `<my-component first="Donald" last="Duck">Some Text</my-component>`;
+      const page = await newSpecPage({components: [MyComponent]});
       await page.setContent(html);
-      //await page.waitForChanges();
-
-      expect(page.doc.body).toEqualHtml(`
-       <my-component first="Hello" last="World">
-         <mock:shadow-root>
-           <div class="nice">
-             <span>
-               Hello, World! I'm Hello World
-             </span>
-             <button>
-               Click Me!
-             </button>
-           </div>
-         </mock:shadow-root>
-         Some Text
-         </my-component>
-         `);
-         expect(page.doc.body).toMatchSnapshot()
-
+      expect(page.doc.body).toMatchSnapshot();
     });
   });
 
-  it('Should emit', async() => {
+  fit('Should emit', async() => {
     const {root, win} = await newSpecPage({components: [MyComponent], html: `<my-component first="John" last="Doe"></my-component>`});
     let button = root
       .shadowRoot

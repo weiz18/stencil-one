@@ -2,15 +2,17 @@
 
 exports[`component render Should render setting content later 1`] = `
 <body>
-  <my-component first="Hello" last="World">
+  <my-component first="Donald" last="Duck">
     <mock:shadow-root>
       <div class="nice">
         <span>
-          Hello, World! I'm Hello World
+          Hello, World! I'm Donald Duck
         </span>
         <button>
           Click Me!
         </button>
+        <input>
+        <slot></slot>
       </div>
     </mock:shadow-root>
     Some Text
@@ -18,17 +20,36 @@ exports[`component render Should render setting content later 1`] = `
 </body>
 `;
 
-exports[`component render Should render without serializing shadow dom 1`] = `
-<my-component first="Hello" last="World">
-  <!---->
+exports[`component render Should render with serializing shadow dom 1`] = `
+<my-component first="Donald" last="Duck">
+  <mock:shadow-root>
+    <div class="nice">
+      <span>
+        Hello, World! I'm Donald Duck
+      </span>
+      <button>
+        Click Me!
+      </button>
+      <input>
+      <slot></slot>
+    </div>
+  </mock:shadow-root>
   Some Text
+</my-component>
+`;
+
+exports[`component render Should render without serializing shadow dom 1`] = `
+<my-component first="Donald" last="Duck">
+  <!---->
   <div class="nice">
     <span>
-      Hello, World! I'm Hello World
+      Hello, World! I'm Donald Duck
     </span>
     <button>
       Click Me!
     </button>
+    <input>
+    Some Text
   </div>
 </my-component>
 `;
