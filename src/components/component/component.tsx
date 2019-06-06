@@ -1,5 +1,5 @@
-import { Component, Prop, h, JSX, Event, State, EventEmitter, Method } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, h, JSX} from '@stencil/core';
+import videojs from 'video.js/dist/video.min.js';
 
 @Component({
   tag: 'my-component',
@@ -7,55 +7,17 @@ import { format } from '../../utils/utils';
   shadow: true
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
+  public videoEl;
 
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  @State() buttonFace: string = 'Click Me!';
-  @State() clicked: boolean;
-
-  @Event() buttonClicked: EventEmitter<string>;
-  
-  @Method() 
-  async updateFace(value: string): Promise<string>{
-    this.buttonFace = value;
-    return this.buttonFace.toUpperCase();
+  componentDidLoad() {
+    videojs(this.videoEl);
   }
-
-  getOne (): string {
-    return 'This is a string'
-  }
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
-  }
-    
-  onClicked(value: string) {
-    console.log('value is: ', value);
-     this.clicked = !this.clicked;
-
-  }
-
   render() : JSX.Element {
     return (
-      <div class={{nice: true, clicked: this.clicked}} >
-      <span>
-        Hello, World! I'm {this.getText()}
-      </span>
-      <button onClick={()=>this.onClicked('ABCD')}>
-        {this.buttonFace}
-      </button>
-      </div>
+      <video ref={ el => this.videoEl = el}>
+
+      </video>
     );
   }
 }

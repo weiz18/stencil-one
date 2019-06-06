@@ -9,126 +9,27 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComplexProp {
-    'values': Array<string>;
-  }
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
-    'updateFace': (value: string) => Promise<string>;
-  }
-  interface MyFetch {
-    'language': string;
-  }
-  interface MyHost {
-    'values': Array<string>;
-  }
-  interface MyInput {
-    'header': string;
-  }
-  interface MySlot {
-    'values': Array<string>;
-  }
+  interface MyComponent {}
 }
 
 declare global {
 
-
-  interface HTMLMyComplexPropElement extends Components.MyComplexProp, HTMLStencilElement {}
-  var HTMLMyComplexPropElement: {
-    prototype: HTMLMyComplexPropElement;
-    new (): HTMLMyComplexPropElement;
-  };
 
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
     prototype: HTMLMyComponentElement;
     new (): HTMLMyComponentElement;
   };
-
-  interface HTMLMyFetchElement extends Components.MyFetch, HTMLStencilElement {}
-  var HTMLMyFetchElement: {
-    prototype: HTMLMyFetchElement;
-    new (): HTMLMyFetchElement;
-  };
-
-  interface HTMLMyHostElement extends Components.MyHost, HTMLStencilElement {}
-  var HTMLMyHostElement: {
-    prototype: HTMLMyHostElement;
-    new (): HTMLMyHostElement;
-  };
-
-  interface HTMLMyInputElement extends Components.MyInput, HTMLStencilElement {}
-  var HTMLMyInputElement: {
-    prototype: HTMLMyInputElement;
-    new (): HTMLMyInputElement;
-  };
-
-  interface HTMLMySlotElement extends Components.MySlot, HTMLStencilElement {}
-  var HTMLMySlotElement: {
-    prototype: HTMLMySlotElement;
-    new (): HTMLMySlotElement;
-  };
   interface HTMLElementTagNameMap {
-    'my-complex-prop': HTMLMyComplexPropElement;
     'my-component': HTMLMyComponentElement;
-    'my-fetch': HTMLMyFetchElement;
-    'my-host': HTMLMyHostElement;
-    'my-input': HTMLMyInputElement;
-    'my-slot': HTMLMySlotElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComplexProp extends JSXBase.HTMLAttributes<HTMLMyComplexPropElement> {
-    'values'?: Array<string>;
-  }
-  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
-    'onButtonClicked'?: (event: CustomEvent<string>) => void;
-  }
-  interface MyFetch extends JSXBase.HTMLAttributes<HTMLMyFetchElement> {
-    'language'?: string;
-  }
-  interface MyHost extends JSXBase.HTMLAttributes<HTMLMyHostElement> {
-    'values'?: Array<string>;
-  }
-  interface MyInput extends JSXBase.HTMLAttributes<HTMLMyInputElement> {
-    'header'?: string;
-    'onThisHappened'?: (event: CustomEvent<any>) => void;
-  }
-  interface MySlot extends JSXBase.HTMLAttributes<HTMLMySlotElement> {
-    'values'?: Array<string>;
-  }
+  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {}
 
   interface IntrinsicElements {
-    'my-complex-prop': MyComplexProp;
     'my-component': MyComponent;
-    'my-fetch': MyFetch;
-    'my-host': MyHost;
-    'my-input': MyInput;
-    'my-slot': MySlot;
   }
 }
 
